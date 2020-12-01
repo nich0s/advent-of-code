@@ -43,15 +43,18 @@ class Day1ReportRepair {
 
     private static int calculate(List<Integer> inputs) {
         for (int x = 0; x < inputs.size() - 1; x += 1) {
-            Integer left = inputs.get(x);
+            int left = inputs.get(x);
             for (int y = 0; y < inputs.size() - 1; y += 1) {
-                Integer right = inputs.get(y);
-                int sum = left + right;
-                if (sum > 2020) {
-                    break;
-                }
-                if (sum == TARGET_VALUE) {
-                    return left * right;
+                int middle = inputs.get(y);
+                for (int z = 0; z < inputs.size() - 1; z += 1) {
+                    int right = inputs.get(z);
+                    int sum = left + middle + right;
+                    if (sum > TARGET_VALUE) {
+                        break;
+                    }
+                    if (sum == TARGET_VALUE) {
+                        return left * middle * right;
+                    }
                 }
             }
         }
