@@ -47,7 +47,7 @@ class Day1ReportRepair {
                 // ... same for the middle
                 int middle = inputs.get(y);
                 for (int z = 0; z < inputs.size() - 1; z += 1) {
-                    // ... and finally the righ
+                    // ... and finally the right
                     int right = inputs.get(z);
                     // sum the three values
                     int sum = left + middle + right;
