@@ -42,16 +42,27 @@ class Day1ReportRepair {
     }
 
     private static int calculate(List<Integer> inputs) {
+        // this is almost too many loops and would likely be better served by a matrix
         for (int x = 0; x < inputs.size() - 1; x += 1) {
+            // get the left value from inputs via dead reckoning
             int left = inputs.get(x);
             for (int y = 0; y < inputs.size() - 1; y += 1) {
+                // ... same for the middle
                 int middle = inputs.get(y);
                 for (int z = 0; z < inputs.size() - 1; z += 1) {
+                    // ... and finally the righ
                     int right = inputs.get(z);
+                    // sum the three values
                     int sum = left + middle + right;
+
+                    // since we know the values are ordered naturally (smallest to largest), we can assume that all
+                    // future sums will be greater than the intended target value and it is therefore safe to skip the
+                    // rest of the values in the loop
                     if (sum > TARGET_VALUE) {
                         break;
                     }
+
+                    // we have found the target value, so we follow the brief and output our solve
                     if (sum == TARGET_VALUE) {
                         return left * middle * right;
                     }
@@ -62,10 +73,14 @@ class Day1ReportRepair {
     }
 
     private static List<Integer> getInputs() throws IOException {
+        // Pull a list of values from the text file
         try (Stream<String> lines = Files.lines(Path.of("C:\\w\\advent-of-code\\2020\\Day1ReportRepair\\input"))) {
             return lines
+                    // cast them to Integers (boxed primitives)
                     .map(Integer::valueOf)
+                    // reorder them using the default natural sort; allows me make assumptions on loop state above
                     .sorted()
+                    // collect the results to an immutable list
                     .collect(Collectors.toUnmodifiableList());
         }
     }
