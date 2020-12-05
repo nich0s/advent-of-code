@@ -3,7 +3,10 @@ package Day4PassportProcessing;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 public class Day4PassportProcessing {
 
@@ -27,7 +30,7 @@ public class Day4PassportProcessing {
                         count += 1;
                     }
                 } catch (NullPointerException npe) {
-                    ;;
+                    // eat it. lombok is throwing npes;
                 }
             }
             System.out.println((int) count);

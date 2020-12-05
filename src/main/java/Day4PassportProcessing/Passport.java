@@ -73,9 +73,7 @@ public class Passport {
             }
         }
         if (matcher.group(2).equals("cm")) {
-            if (Integer.parseInt(matcher.group(1)) < 150 || Integer.parseInt(matcher.group(1)) > 193) {
-                return false;
-            }
+            return Integer.parseInt(matcher.group(1)) >= 150 && Integer.parseInt(matcher.group(1)) <= 193;
         }
         return true;
     }
@@ -87,7 +85,7 @@ public class Passport {
     }
 
     private boolean validateEyeColor(String eyeColor) {
-        List<String> valid = new ArrayList<String>() {
+        List<String> valid = new ArrayList<>() {
             {
                 add("amb");
                 add("blu");
